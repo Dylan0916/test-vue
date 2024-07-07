@@ -19,27 +19,40 @@
     <hr />
     <div>
       Error:
-      <p v-show="meta.touched && errorMsg">{{ errorMsg }}</p>
+      <p v-show="errorMsg">{{ errorMsg }}</p>
     </div>
   </form>
 </template>
 
 <script setup lang="ts">
 import { ref, watchEffect, computed } from 'vue'
-import { useForm, defineRule } from 'vee-validate'
+import { useForm, defineRule, configure } from 'vee-validate'
 import { object as yupObject, string } from 'yup'
 import { toTypedSchema } from '@vee-validate/yup'
+
+configure({
+  validateOnInput: false,
+  validateOnChange: false,
+  validateOnBlur: false,
+  validateOnModelUpdate: false,
+})
 
 const { values, errors, meta, defineField, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
     yupObject({
       email: string(),
-      password: string(),
-    }).test('at-least-one', '至少需要填寫 A 或 B 其中一個', (value) => {
-      const { email, password } = value
+      password: string().when('email', ([email], schema) => {
+        console.log('== email value ==', email)
 
-      return !!email || !!password
+        return email ? schema.optional() : schema.required('必須填一個')
+      }),
     })
+    // .test('at-least-one', '至少需要填寫 A 或 B 其中一個', (value, ...args) => {
+    //   console.log('== args ==', args)
+    //   const { email, password } = value
+
+    //   return !!email || !!password
+    // })
   ),
 })
 
