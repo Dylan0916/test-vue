@@ -5,9 +5,9 @@ import VeeValidate from './components/VeeValidate.vue'
 </script>
 
 <template>
-  <!-- <VCalendar /> -->
+  <VCalendar />
   <!-- <Test /> -->
-  <VeeValidate />
+  <!-- <VeeValidate /> -->
 </template>
 
 <style scoped></style>
