@@ -1,28 +1,18 @@
 <template>
-  <h1>{{ obj1.a }}</h1>
-  <h1>{{ obj2.a }}</h1>
-  <button @click="doSomething1">Click1</button>
-  <button @click="doSomething2">Click2</button>
+  <input v-for="(_, index) in inputs" :key="index" v-model="inputs[index]" ref="inputRefs" @focus="handleFocus" />
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watchEffect } from 'vue';
+import { ref, reactive, watchEffect } from 'vue'
 
-const obj1 = ref({ a: 1 });
-const obj2 = reactive({ a: 1 });
+const inputs = reactive(['', '', '', ''])
+const inputRefs = ref<HTMLInputElement[]>([])
 
-watchEffect(() => {
-  console.log('== obj1 ==', obj1.value.a);
-});
-watchEffect(() => {
-  console.log('== obj2 ==', obj2.a);
-});
+function handleFocus() {
+  const foundFirstEmptyIndex = inputs.findIndex((v) => !v)
+  const focusIndex = foundFirstEmptyIndex === -1 ? inputRefs.value.length - 1 : foundFirstEmptyIndex
 
-function doSomething1() {
-  obj1.value.a += 1;
-}
-function doSomething2() {
-  obj2.a += 1;
+  inputRefs.value[focusIndex]?.focus()
 }
 </script>
 
