@@ -6,8 +6,8 @@ import VeeValidate from './components/VeeValidate.vue'
 
 <template>
   <!-- <VCalendar /> -->
-  <Test />
-  <!-- <VeeValidate /> -->
+  <!-- <Test /> -->
+  <VeeValidate />
 </template>
 
 <style scoped></style>
