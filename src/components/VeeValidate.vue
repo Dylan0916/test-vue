@@ -8,8 +8,12 @@
       <label>Password</label>
       <input v-model="password" v-bind="passwordAttrs" type="password" />
     </div>
+    <div>
+      <label>I agree</label>
+      <input v-model="checkbox" v-bind="checkboxAttrs" type="checkbox" value="1" />
+    </div>
     <hr />
-    <button :disabled="isDisabled" @click="onSubmit">Sign up for newsletter</button>
+    <button @click="onSubmit">Sign up for newsletter</button>
     <hr />
     <pre>isSubmitting: {{ isSubmitting }}</pre>
     <hr />
@@ -25,7 +29,7 @@
 <script setup lang="ts">
 import { ref, watchEffect, computed } from 'vue'
 import { useForm, defineRule, configure, type LazyComponentBindsConfig } from 'vee-validate'
-import { object as yupObject, string } from 'yup'
+import { object as yupObject, string, array } from 'yup'
 import { toTypedSchema } from '@vee-validate/yup'
 
 const { values, errors, meta, defineField, handleSubmit, submitCount, isSubmitting } = useForm({
@@ -33,19 +37,22 @@ const { values, errors, meta, defineField, handleSubmit, submitCount, isSubmitti
     yupObject({
       email: string().required(),
       password: string().required(),
+      checkbox: array().min(1),
     })
   ),
+  initialValues: {
+    checkbox: [],
+  },
 })
-
-type T1 = ReturnType<LazyComponentBindsConfig>
 
 const [email, emailAttrs] = defineField('email')
 const [password, passwordAttrs] = defineField('password')
+const [checkbox, checkboxAttrs] = defineField('checkbox')
 
 const isDisabled = computed(() => Object.values(values).some((v) => !v))
 
 watchEffect(() => {
-  // console.log('== controlledValues ==', controlledValues.value, values)
+  console.log('== checkbox ==', checkbox.value)
 })
 
 function sleep(time: number) {
