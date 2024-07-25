@@ -1,5 +1,5 @@
 <template>
-  <form @submit="onSubmit">
+  <form>
     <div>
       <label>Email</label>
       <input v-model="email" v-bind="emailAttrs" type="text" />
@@ -9,7 +9,9 @@
       <input v-model="password" v-bind="passwordAttrs" type="password" />
     </div>
     <hr />
-    <button :disabled="isDisabled">Sign up for newsletter</button>
+    <button :disabled="isDisabled" @click="onSubmit">Sign up for newsletter</button>
+    <hr />
+    <pre>isSubmitting: {{ isSubmitting }}</pre>
     <hr />
     <pre>meta: {{ meta }}</pre>
     <hr />
@@ -26,52 +28,19 @@ import { useForm, defineRule, configure, type LazyComponentBindsConfig } from 'v
 import { object as yupObject, string } from 'yup'
 import { toTypedSchema } from '@vee-validate/yup'
 
-const { values, errors, meta, defineField, handleSubmit, submitCount } = useForm({
+const { values, errors, meta, defineField, handleSubmit, submitCount, isSubmitting } = useForm({
   validationSchema: toTypedSchema(
     yupObject({
-      email: string().required().email(),
-      password: string().required().min(8),
+      email: string().required(),
+      password: string().required(),
     })
   ),
 })
 
 type T1 = ReturnType<LazyComponentBindsConfig>
 
-function createNFormItemConfig(customAttrs: Record<string, unknown>, inputConfig?: () => T1 | Partial<T1>): LazyComponentBindsConfig {
-  return (state) => {
-    const _inputConfig = typeof inputConfig === 'function' ? inputConfig() : inputConfig
-
-    return {
-      model: 'modelValue',
-      props: {
-        validationStatus: state.errors[0] ? 'error' : undefined,
-        feedback: state.errors[0],
-        debounce: 500,
-        ...customAttrs,
-      },
-      ..._inputConfig,
-    }
-  }
-}
-
-function testConfig() {
-  return () => {
-    if (submitCount.value > 0) {
-      return {
-        validateOnBlur: true,
-        validateOnModelUpdate: true,
-      }
-    }
-
-    return {
-      validateOnBlur: true,
-      validateOnModelUpdate: false,
-    }
-  }
-}
-
-const [email, emailAttrs] = defineField('email', createNFormItemConfig({}, testConfig()))
-const [password, passwordAttrs] = defineField('password', createNFormItemConfig({}, testConfig()))
+const [email, emailAttrs] = defineField('email')
+const [password, passwordAttrs] = defineField('password')
 
 const isDisabled = computed(() => Object.values(values).some((v) => !v))
 
@@ -79,10 +48,19 @@ watchEffect(() => {
   // console.log('== controlledValues ==', controlledValues.value, values)
 })
 
-const onSubmit = handleSubmit((values) => {
+function sleep(time: number) {
+  return new Promise((resolve) => setTimeout(resolve, time))
+}
+
+const onSubmit = handleSubmit(async (values) => {
+  console.log('== values ==', values)
   // Send data to API
-  console.log('== onSubmit ==', JSON.stringify(values, null, 2))
+  await testExecutor()
 })
+
+async function testExecutor() {
+  await sleep(2000)
+}
 </script>
 
 <style scoped></style>
