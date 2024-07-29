@@ -1,18 +1,19 @@
 <template>
-  <input v-for="(_, index) in inputs" :key="index" v-model="inputs[index]" ref="inputRefs" @focus="handleFocus" />
+  <TestChild ref="testRef" />
+  <button @click="onClick">click</button>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, watchEffect } from 'vue'
+import TestChild from './TestChild.vue'
 
-const inputs = reactive(['', '', '', ''])
-const inputRefs = ref<HTMLInputElement[]>([])
+const testRef = ref(null)
 
-function handleFocus() {
-  const foundFirstEmptyIndex = inputs.findIndex((v) => !v)
-  const focusIndex = foundFirstEmptyIndex === -1 ? inputRefs.value.length - 1 : foundFirstEmptyIndex
+function onClick() {
+  console.log('== testRef ==', testRef.value)
+  console.log('== focus ==', testRef.value.focus)
 
-  inputRefs.value[focusIndex]?.focus()
+  testRef.value?.focus?.()
 }
 </script>
 
