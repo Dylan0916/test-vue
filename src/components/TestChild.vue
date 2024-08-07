@@ -1,23 +1,24 @@
 <template>
-  <TestChild2 ref="test2Ref" />
+  <input :value="props.modelValue" @input="onInput" />
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import TestChild2 from './TestChild2.vue'
-import { inputMethods } from '../constants'
 
-const test2Ref = ref<any>(null)
+interface Props {
+  modelValue: string
+}
+interface Emits {
+  (event: 'update:modelValue', value: string): void
+}
 
-const exposedInputMethods = new Proxy({}, { get: (_, prop) => () => test2Ref.value[prop] })
-// const exposedInputMethods = inputMethods.reduce((acc, method) => {
-//   acc[method] = () => test2Ref.value?.[method]()
+const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
 
-//   return acc
-// }, {} as any)
-
-// defineExpose({ ...exposedInputMethods })
-defineExpose(exposedInputMethods)
+function onInput(e) {
+  emit('update:modelValue', e.target.value)
+}
 </script>
 
 <style scoped></style>

@@ -1,19 +1,16 @@
 <template>
-  <TestChild ref="testRef" />
-  <button @click="onClick">click</button>
+  <TestChild :model-value="testValue" @update:model-value="foo" />
+  <h3>{{ testValue }}</h3>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, watchEffect } from 'vue'
 import TestChild from './TestChild.vue'
 
-const testRef = ref(null)
+const testValue = ref('')
 
-function onClick() {
-  console.log('== testRef ==', testRef.value)
-  console.log('== focus ==', testRef.value.focus)
-
-  testRef.value?.focus?.()
+function foo(value: string) {
+  testValue.value = value
 }
 </script>
 
