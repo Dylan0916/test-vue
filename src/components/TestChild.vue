@@ -1,24 +1,21 @@
 <template>
-  <input :value="props.modelValue" @input="onInput" />
+  <div>
+    <h1>{{ name }}</h1>
+    <h1>{{ obj }}</h1>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import TestChild2 from './TestChild2.vue'
+import { defineProps, toRefs } from 'vue'
 
 interface Props {
-  modelValue: string
-}
-interface Emits {
-  (event: 'update:modelValue', value: string): void
+  name?: string
+  obj?: Record<string, any>
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
-
-function onInput(e) {
-  emit('update:modelValue', e.target.value)
-}
+const { name = 'default name', obj = { a: 1 } } = defineProps<Props>()
+// const props = defineProps<Props>()
+// const { name, obj } = toRefs(props)
 </script>
 
-<style scoped></style>
+<style></style>

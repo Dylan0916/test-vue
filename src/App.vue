@@ -7,9 +7,9 @@ import Proxy from './components/Proxy.vue'
 
 <template>
   <!-- <VCalendar /> -->
-  <!-- <Test /> -->
+  <Test />
   <!-- <VeeValidate /> -->
-  <Proxy />
+  <!-- <Proxy /> -->
 </template>
 
 <style scoped></style>
