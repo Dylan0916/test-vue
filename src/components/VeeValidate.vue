@@ -35,7 +35,7 @@ import { toTypedSchema } from '@vee-validate/yup'
 const { values, errors, meta, defineField, handleSubmit, submitCount, isSubmitting } = useForm({
   validationSchema: toTypedSchema(
     yupObject({
-      email: string().required(),
+      email: wordLimitTest(5, '長度超過').required('必填！！'),
       password: string().required(),
       checkbox: array().min(1),
     })
@@ -55,18 +55,10 @@ watchEffect(() => {
   console.log('== checkbox ==', checkbox.value)
 })
 
-function sleep(time: number) {
-  return new Promise((resolve) => setTimeout(resolve, time))
-}
-
-const onSubmit = handleSubmit(async (values) => {
-  console.log('== values ==', values)
-  // Send data to API
-  await testExecutor()
-})
-
-async function testExecutor() {
-  await sleep(2000)
+function wordLimitTest(limit: number, errorMessage: string) {
+  return string()
+    .trim()
+    .test('word-limit', errorMessage, (value) => !value || value.length <= limit)
 }
 </script>
 
