@@ -9,8 +9,8 @@
       <input v-model="password" v-bind="passwordAttrs" type="password" />
     </div>
     <div>
-      <label>I agree</label>
-      <input v-model="checkbox" v-bind="checkboxAttrs" type="checkbox" value="1" />
+      <label>Phone</label>
+      <Phone v-model="phone" v-bind="phoneAttrs" />
     </div>
     <hr />
     <button @click="onSubmit">Sign up for newsletter</button>
@@ -32,27 +32,37 @@ import { useForm, defineRule, configure, type LazyComponentBindsConfig } from 'v
 import { object as yupObject, string, array } from 'yup'
 import { toTypedSchema } from '@vee-validate/yup'
 
+import Phone from './Phone.vue'
+
 const { values, errors, meta, defineField, handleSubmit, submitCount, isSubmitting } = useForm({
   validationSchema: toTypedSchema(
     yupObject({
       email: wordLimitTest(5, '長度超過').required('必填！！'),
       password: string().required(),
-      checkbox: array().min(1),
+      phone: string()
+        .trim()
+        .test('required phone', '電話驗證失敗', (value) => {
+          return false
+        }),
     })
   ),
   initialValues: {
-    checkbox: [],
+    phone: '+886',
   },
 })
 
 const [email, emailAttrs] = defineField('email')
 const [password, passwordAttrs] = defineField('password')
-const [checkbox, checkboxAttrs] = defineField('checkbox')
+const [phone, phoneAttrs] = defineField<any, string>('phone')
 
 const isDisabled = computed(() => Object.values(values).some((v) => !v))
 
-watchEffect(() => {
-  console.log('== checkbox ==', checkbox.value)
+// watchEffect(() => {
+//   console.log('== phoneAttrs ==', phoneAttrs.value)
+// })
+
+const onSubmit = handleSubmit((values) => {
+  console.log('== values ==', values)
 })
 
 function wordLimitTest(limit: number, errorMessage: string) {
