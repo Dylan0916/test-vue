@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineModel, defineProps, computed, watchEffect, useAttrs } from 'vue'
+import { computed, watchEffect, useAttrs } from 'vue'
 
 interface Props {}
 
