@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="start">Start</button>
-    <button @click="stop">Stop</button>
+    <!-- <button @click="stop">Stop</button> -->
   </div>
 </template>
 
@@ -22,14 +22,17 @@ recognition.onresult = (event) => {
 // recognition.onresult = (event) => {
 //   let finalTranscript = ''
 //   let interimTranscript = ''
-//   const result = event.results[0]
-//   const { isFinal } = result
-//   const [{ transcript }] = result
 
-//   if (isFinal) {
-//     finalTranscript = transcript
-//   } else {
-//     interimTranscript = transcript
+//   for (let i = event.resultIndex; i < event.results.length; i++) {
+//     const result = event.results[i]
+//     const { isFinal } = result
+//     const [{ transcript }] = result
+
+//     if (isFinal) {
+//       finalTranscript = transcript
+//     } else {
+//       interimTranscript = transcript
+//     }
 //   }
 
 //   console.log('即時結果:', interimTranscript)
@@ -60,7 +63,7 @@ function start() {
   recognition.start()
 }
 
-function stop() {
-  recognition.stop()
-}
+// function stop() {
+//   recognition.stop()
+// }
 </script>

@@ -1,8 +1,8 @@
 <template>
-  <!-- <SpeechRecognition /> -->
+  <SpeechRecognition />
   <!-- <SpeechSynthesisUtterance /> -->
   <!-- <ScreenCapture /> -->
-  <Cryptography />
+  <!-- <Cryptography /> -->
 </template>
 
 <script setup lang="ts">
