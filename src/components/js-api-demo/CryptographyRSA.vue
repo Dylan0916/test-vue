@@ -34,7 +34,7 @@ async function generateRSAKey() {
 }
 
 async function encryptData(publicKey: CryptoKey, data: BufferSource) {
-  const encryptedData = await crypto.subtle.encrypt(
+  const encrypted = await crypto.subtle.encrypt(
     {
       name: 'RSA-OAEP',
     },
@@ -42,23 +42,23 @@ async function encryptData(publicKey: CryptoKey, data: BufferSource) {
     data
   )
 
-  console.log('加密後的資料:', new Uint8Array(encryptedData))
+  console.log('加密後的資料:', new Uint8Array(encrypted))
 
-  return encryptedData
+  return encrypted
 }
 
-async function decryptData(privateKey: CryptoKey, data: BufferSource) {
-  const decryptedData = await crypto.subtle.decrypt(
+async function decryptData(privateKey: CryptoKey, encryptedData: BufferSource) {
+  const decrypted = await crypto.subtle.decrypt(
     {
       name: 'RSA-OAEP',
     },
     privateKey,
-    data
+    encryptedData
   )
 
-  console.log('解密後的資料:', new TextDecoder().decode(decryptedData))
+  console.log('解密後的資料:', new TextDecoder().decode(decrypted))
 
-  return decryptedData
+  return decrypted
 }
 
 async function encryptText() {

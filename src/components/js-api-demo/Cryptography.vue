@@ -6,7 +6,7 @@
     <button @click="encryptText">encrypt text</button>
     <button @click="decryptText">decrypt text</button>
     <hr />
-    <CryptographyRSA />
+    <!-- <CryptographyRSA /> -->
   </div>
 </template>
 
@@ -42,25 +42,6 @@ async function generateAESKey() {
   return key
 }
 
-async function decryptData(key: CryptoKey, data: BufferSource) {
-  if (!iv) {
-    return
-  }
-
-  const decrypted = await crypto.subtle.decrypt(
-    {
-      name: 'AES-GCM',
-      iv,
-    },
-    key,
-    data
-  )
-
-  console.log('解密後的資料:', new TextDecoder().decode(decrypted))
-
-  return decrypted
-}
-
 async function encryptData(key: CryptoKey, data: BufferSource) {
   const iv = generateRandomValues()
   const encrypted = await crypto.subtle.encrypt(
@@ -76,6 +57,25 @@ async function encryptData(key: CryptoKey, data: BufferSource) {
   console.log('加密後的資料:', new Uint8Array(encrypted))
 
   return { encrypted, iv }
+}
+
+async function decryptData(key: CryptoKey, encryptedData: BufferSource) {
+  if (!iv) {
+    return
+  }
+
+  const decrypted = await crypto.subtle.decrypt(
+    {
+      name: 'AES-GCM',
+      iv,
+    },
+    key,
+    encryptedData
+  )
+
+  console.log('解密後的資料:', new TextDecoder().decode(decrypted))
+
+  return decrypted
 }
 
 async function encryptText() {
