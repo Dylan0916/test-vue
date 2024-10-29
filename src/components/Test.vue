@@ -4,7 +4,8 @@
   <!-- <ScreenCapture /> -->
   <!-- <Cryptography /> -->
   <!-- <History /> -->
-  <History2 />
+  <!-- <History2 /> -->
+  <Battery />
 </template>
 
 <script setup lang="ts">
@@ -16,6 +17,7 @@ import ScreenCapture from './js-api-demo/ScreenCapture.vue'
 import Cryptography from './js-api-demo/Cryptography.vue'
 import History from './js-api-demo/History.vue'
 import History2 from './js-api-demo/History2.vue'
+import Battery from './js-api-demo/Battery.vue'
 </script>
 
 <style scoped></style>
