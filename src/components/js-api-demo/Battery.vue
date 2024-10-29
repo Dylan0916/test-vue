@@ -9,7 +9,8 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+// @ts-nocheck
 import { ref, onMounted } from 'vue'
 
 const battery = ref(null)

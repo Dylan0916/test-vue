@@ -5,7 +5,8 @@
   <!-- <Cryptography /> -->
   <!-- <History /> -->
   <!-- <History2 /> -->
-  <Battery />
+  <!-- <Battery /> -->
+  <Share />
 </template>
 
 <script setup lang="ts">
@@ -18,6 +19,7 @@ import Cryptography from './js-api-demo/Cryptography.vue'
 import History from './js-api-demo/History.vue'
 import History2 from './js-api-demo/History2.vue'
 import Battery from './js-api-demo/Battery.vue'
+import Share from './js-api-demo/Share.vue'
 </script>
 
 <style scoped></style>
