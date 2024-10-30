@@ -1,6 +1,6 @@
 <template>
   <!-- <SpeechRecognition /> -->
-  <SpeechSynthesisUtterance />
+  <!-- <SpeechSynthesisUtterance /> -->
   <!-- <ScreenCapture /> -->
   <!-- <Cryptography /> -->
   <!-- <History /> -->
@@ -9,6 +9,7 @@
   <!-- <Share /> -->
   <!-- <PaymentRequest /> -->
   <!-- <ShowOpenFilePicker /> -->
+  <Locks />
 </template>
 
 <script setup lang="ts">
@@ -24,6 +25,7 @@ import Battery from './js-api-demo/Battery.vue'
 import Share from './js-api-demo/Share.vue'
 import PaymentRequest from './js-api-demo/PaymentRequest.vue'
 import ShowOpenFilePicker from './js-api-demo/ShowOpenFilePicker.vue'
+import Locks from './js-api-demo/Locks.vue'
 </script>
 
 <style scoped></style>
