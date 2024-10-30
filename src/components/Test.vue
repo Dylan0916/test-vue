@@ -7,6 +7,7 @@
   <!-- <History2 /> -->
   <!-- <Battery /> -->
   <Share />
+  <PaymentRequest />
 </template>
 
 <script setup lang="ts">
@@ -20,6 +21,7 @@ import History from './js-api-demo/History.vue'
 import History2 from './js-api-demo/History2.vue'
 import Battery from './js-api-demo/Battery.vue'
 import Share from './js-api-demo/Share.vue'
+import PaymentRequest from './js-api-demo/PaymentRequest.vue'
 </script>
 
 <style scoped></style>
