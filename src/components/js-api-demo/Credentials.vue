@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { ref, onMounted } from 'vue'
 
 const isLoading = ref(false)
@@ -17,11 +17,11 @@ function login() {
   return new Promise(resolve => setTimeout(resolve, 2000))
 }
 
-async function loginAndStoreCredentials(username: string, password: string) {
+async function loginAndStoreCredentials(username, password) {
   isLoading.value = true
   await login()
 
-  const credential = new (window as any).PasswordCredential({
+  const credential = new PasswordCredential({
     id: username,
     password: password,
   })
