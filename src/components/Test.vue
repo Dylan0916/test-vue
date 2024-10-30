@@ -6,8 +6,9 @@
   <!-- <History /> -->
   <!-- <History2 /> -->
   <!-- <Battery /> -->
-  <Share />
-  <PaymentRequest />
+  <!-- <Share /> -->
+  <!-- <PaymentRequest /> -->
+  <ShowOpenFilePicker />
 </template>
 
 <script setup lang="ts">
@@ -22,6 +23,7 @@ import History2 from './js-api-demo/History2.vue'
 import Battery from './js-api-demo/Battery.vue'
 import Share from './js-api-demo/Share.vue'
 import PaymentRequest from './js-api-demo/PaymentRequest.vue'
+import ShowOpenFilePicker from './js-api-demo/ShowOpenFilePicker.vue'
 </script>
 
 <style scoped></style>
