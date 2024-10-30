@@ -10,7 +10,6 @@
 import { onMounted } from 'vue'
 
 function pushState(n: number) {
-  console.log('== window.location.pathname ==', window.location.pathname)
   history.pushState({ prev: window.location.pathname }, '', `/test-push-state-${n}`)
 }
 

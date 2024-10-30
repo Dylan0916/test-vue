@@ -1,6 +1,6 @@
 <template>
   <!-- <SpeechRecognition /> -->
-  <!-- <SpeechSynthesisUtterance /> -->
+  <SpeechSynthesisUtterance />
   <!-- <ScreenCapture /> -->
   <!-- <Cryptography /> -->
   <!-- <History /> -->
@@ -8,7 +8,7 @@
   <!-- <Battery /> -->
   <!-- <Share /> -->
   <!-- <PaymentRequest /> -->
-  <ShowOpenFilePicker />
+  <!-- <ShowOpenFilePicker /> -->
 </template>
 
 <script setup lang="ts">

@@ -33,7 +33,7 @@
 import { ref } from 'vue'
 import { NSlider } from 'naive-ui'
 
-const text = ref('哈囉你好，很高興見到你')
+const text = ref('哈囉你好啊啊啊啊啊')
 const voices = ref<SpeechSynthesisVoice[]>([])
 const voiceIndex = ref(0)
 const volume = ref(1)
@@ -42,7 +42,7 @@ const pitch = ref(1)
 
 window.speechSynthesis.onvoiceschanged = () => {
   voices.value = window.speechSynthesis.getVoices().toSorted((a, b) => (a.lang > b.lang ? 1 : -1))
-  voiceIndex.value = voices.value.findIndex((voice) => voice.lang === 'zh-TW')
+  voiceIndex.value = voices.value.findIndex(voice => voice.lang === 'zh-TW')
 }
 
 function speak() {
@@ -56,17 +56,17 @@ function speak() {
 
   window.speechSynthesis.speak(utterance)
 
-  //   utterance.onstart = function () {
-  //     console.log('語音播放開始')
-  //   }
+  utterance.onstart = function () {
+    console.log('語音播放開始')
+  }
 
-  //   utterance.onend = function () {
-  //     console.log('語音播放結束')
-  //   }
+  utterance.onend = function () {
+    console.log('語音播放結束')
+  }
 
-  //   utterance.onerror = function (event) {
-  //     console.error('語音播放錯誤:', event.error)
-  //   }
+  utterance.onerror = function (event) {
+    console.error('語音播放錯誤:', event.error)
+  }
 }
 
 function pause() {
