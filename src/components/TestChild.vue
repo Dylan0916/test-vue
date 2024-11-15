@@ -1,21 +1,17 @@
 <template>
-  <div>
-    <h1>{{ name }}</h1>
-    <h1>{{ obj }}</h1>
-  </div>
+  <div>Test child</div>
 </template>
 
 <script lang="ts" setup>
-import { defineProps, toRefs } from 'vue'
+import { watchEffect } from 'vue'
 
-interface Props {
-  name?: string
-  obj?: Record<string, any>
-}
+watchEffect(onCleanup => {
+  console.log('== onMounted ==')
 
-const { name = 'default name', obj = { a: 1 } } = defineProps<Props>()
-// const props = defineProps<Props>()
-// const { name, obj } = toRefs(props)
+  onCleanup(() => {
+    console.log('== onCleanup ==')
+  })
+})
 </script>
 
 <style></style>

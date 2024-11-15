@@ -8,10 +8,10 @@ import WebApi from './components/WebApi.vue'
 
 <template>
   <!-- <VCalendar /> -->
-  <!-- <Test /> -->
+  <Test />
   <!-- <VeeValidate /> -->
   <!-- <Proxy /> -->
-  <WebApi />
+  <!-- <WebApi /> -->
 </template>
 
 <style scoped></style>
