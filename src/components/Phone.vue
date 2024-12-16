@@ -8,13 +8,9 @@
 <script lang="ts" setup>
 import { computed, watchEffect, useAttrs } from 'vue'
 
-interface Props {}
-
 interface Emits {
   (event: 'blur'): void
 }
-
-const props = defineProps<Props>()
 
 defineEmits<Emits>()
 

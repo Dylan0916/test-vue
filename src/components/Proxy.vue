@@ -26,6 +26,10 @@ const welcomeData = ref({})
 const checkLoginData = ref({})
 const loginData = ref({})
 
+function foo<T extends () => void>(arg: T) {
+  console.log('foo', arg)
+}
+
 async function refreshWelcome() {
   const { data } = await axios.get('/api/welcome')
 

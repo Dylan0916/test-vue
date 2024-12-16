@@ -34,7 +34,7 @@ function stop() {
 
   const stream = screenVideo.value.srcObject as MediaStream
 
-  stream.getTracks().forEach((track) => track.stop())
+  stream.getTracks().forEach(track => track.stop())
   isSharing.value = false
 }
 </script>

@@ -41,7 +41,7 @@ const { values, errors, meta, defineField, handleSubmit, submitCount, isSubmitti
       password: string().required(),
       phone: string()
         .trim()
-        .test('required phone', '電話驗證失敗', (value) => {
+        .test('required phone', '電話驗證失敗', value => {
           return false
         }),
     })
@@ -55,20 +55,20 @@ const [email, emailAttrs] = defineField('email')
 const [password, passwordAttrs] = defineField('password')
 const [phone, phoneAttrs] = defineField<any, string>('phone')
 
-const isDisabled = computed(() => Object.values(values).some((v) => !v))
+const isDisabled = computed(() => Object.values(values).some(v => !v))
 
 // watchEffect(() => {
 //   console.log('== phoneAttrs ==', phoneAttrs.value)
 // })
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(values => {
   console.log('== values ==', values)
 })
 
 function wordLimitTest(limit: number, errorMessage: string) {
   return string()
     .trim()
-    .test('word-limit', errorMessage, (value) => !value || value.length <= limit)
+    .test('word-limit', errorMessage, value => !value || value.length <= limit)
 }
 </script>
 

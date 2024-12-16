@@ -6,16 +6,22 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint src --cache --cache-strategy content --cache-location ./.cache/eslint/.eslintcache"
   },
   "dependencies": {
+    "@eslint/js": "^9.17.0",
     "@popperjs/core": "^2.11.8",
     "@vee-validate/yup": "^4.14.7",
+    "@vue/eslint-config-typescript": "^14.1.4",
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
+    "eslint-plugin-vue": "^9.32.0",
+    "globals": "^15.13.0",
     "lodash": "^4.17.21",
     "naive-ui": "^2.40.3",
+    "typescript-eslint": "^8.18.0",
     "v-calendar": "^3.1.2",
     "vee-validate": "^4.14.7",
     "vue": "^3.5.13",
@@ -26,6 +32,9 @@
     "@types/dom-speech-recognition": "^0.0.4",
     "@types/wicg-file-system-access": "^2023.10.5",
     "@vitejs/plugin-vue": "^5.2.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.4.2",
     "typescript": "^5.7.2",
     "vite": "^6.0.3",
     "vue-tsc": "^2.1.10"

@@ -22,7 +22,7 @@ const img = ref('')
 onMounted(() => {
   fetchData(1)
 
-  window.onpopstate = (event) => {
+  window.onpopstate = event => {
     const { id } = event.state
 
     fetchData(id)

@@ -13,7 +13,7 @@ recognition.lang = 'zh-TW'
 // recognition.continuous = true
 // recognition.interimResults = true
 
-recognition.onresult = (event) => {
+recognition.onresult = event => {
   const { transcript } = event.results[0][0]
 
   console.log('結果:', transcript)

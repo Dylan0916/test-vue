@@ -13,8 +13,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import CryptographyRSA from './CryptographyRSA.vue'
-
 let aesKey: CryptoKey | null = null
 let iv: Uint8Array | null = null
 let encryptedData: ArrayBuffer | null = null
