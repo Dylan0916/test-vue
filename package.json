@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
+    "typecheck": "vue-tsc",
     "lint": "eslint src --cache --cache-strategy content --cache-location ./.cache/eslint/.eslintcache"
   },
   "dependencies": {
@@ -22,7 +23,7 @@
     "lodash": "^4.17.21",
     "naive-ui": "^2.40.3",
     "typescript-eslint": "^8.18.0",
-    "unocss": "^65.4.2",
+    "unocss": "^65.4.3",
     "v-calendar": "^3.1.2",
     "vee-validate": "^4.14.7",
     "vue": "^3.5.13",
@@ -37,7 +38,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
-    "vite": "^6.0.3",
+    "vite": "^5.4.10",
     "vue-tsc": "^2.1.10"
   }
 }

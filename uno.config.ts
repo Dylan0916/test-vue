@@ -3,7 +3,7 @@ import { defineConfig, presetUno, presetAttributify, presetWind, transformerVari
 export default defineConfig({
   content: {
     pipeline: {
-      include: ['src/**/*.{js,ts}'],
+      include: ['src/**/*.{js,ts,vue}'],
       // exclude: ['node_modules', '.git', '.next'],
     },
   },
