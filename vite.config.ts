@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import UnoCSS from 'unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), UnoCSS()],
   server: {
     https: {
       key: './https/localhost-key.pem',
@@ -16,7 +17,7 @@ export default defineConfig({
         cookiePathRewrite: {
           '*': '/', // 将所有 `Domain` 重写为空字符串，即使用请求域
         },
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: path => path.replace(/^\/api/, ''),
       },
     },
   },

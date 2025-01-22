@@ -1,6 +1,8 @@
 <template>
-  <button @click="onClick">click</button>
-  <TestChild v-if="flag" />
+  <div>
+    <button @click="onClick">click</button>
+    <div class="wd-flex wd-items-center wd-justify-center wd-flex-col wd-h-14 wd-py-1 !wd-text-gray60 !wd-bg-orange50">123</div>
+  </div>
 </template>
 
 <script lang="ts" setup>
