@@ -7,7 +7,7 @@ export default defineConfig({
       // exclude: ['node_modules', '.git', '.next'],
     },
   },
-  presets: [presetWind({ prefix: 'wd-' })],
+  presets: [],
   transformers: [
     transformerVariantGroup(), // 支持 variant groups（例如 hover:bg-red-500）
     transformerDirectives(), // 支持 @apply 等指令
