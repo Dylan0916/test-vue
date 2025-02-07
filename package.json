@@ -11,34 +11,34 @@
     "lint": "eslint src --cache --cache-strategy content --cache-location ./.cache/eslint/.eslintcache"
   },
   "dependencies": {
-    "@eslint/js": "^9.17.0",
+    "@eslint/js": "^9.19.0",
     "@popperjs/core": "^2.11.8",
-    "@vee-validate/yup": "^4.14.7",
-    "@vue/eslint-config-typescript": "^14.1.4",
+    "@vee-validate/yup": "^4.15.0",
+    "@vue/eslint-config-typescript": "^14.3.0",
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "eslint-plugin-vue": "^9.32.0",
-    "globals": "^15.13.0",
+    "globals": "^15.14.0",
     "lodash": "^4.17.21",
-    "naive-ui": "^2.40.3",
-    "typescript-eslint": "^8.18.0",
+    "naive-ui": "^2.41.0",
+    "typescript-eslint": "^8.23.0",
     "unocss": "^65.4.3",
     "v-calendar": "^3.1.2",
-    "vee-validate": "^4.14.7",
+    "vee-validate": "^4.15.0",
     "vue": "^3.5.13",
     "vue-screen-utils": "1.0.0-beta.13",
-    "yup": "^1.5.0"
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@types/dom-speech-recognition": "^0.0.4",
     "@types/wicg-file-system-access": "^2023.10.5",
     "@vitejs/plugin-vue": "^5.2.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
     "prettier": "^3.4.2",
-    "typescript": "^5.7.2",
-    "vite": "^5.4.10",
-    "vue-tsc": "^2.1.10"
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vue-tsc": "^2.2.0"
   }
 }
