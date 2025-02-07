@@ -41,6 +41,9 @@ importers:
       naive-ui:
         specifier: ^2.41.0
         version: 2.41.0(vue@3.5.13(typescript@5.7.3))
+      remove-attr:
+        specifier: ^0.0.15
+        version: 0.0.15
       typescript-eslint:
         specifier: ^8.23.0
         version: 8.23.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.3)
@@ -1532,6 +1535,9 @@ packages:
 
   regenerator-runtime@0.14.0:
     resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}
+
+  remove-attr@0.0.15:
+    resolution: {integrity: sha512-pEdSmtZKvNY0htA5oXyX1kIXSAvMpLniSnFwnbsFGUhAf3vAYSSRWJGar2NWenmRVZviawOqpwN1K/jg/Ot6ww==}
 
   resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
@@ -3232,6 +3238,8 @@ snapshots:
       picomatch: 2.3.1
 
   regenerator-runtime@0.14.0: {}
+
+  remove-attr@0.0.15: {}
 
   resolve-from@4.0.0: {}
 

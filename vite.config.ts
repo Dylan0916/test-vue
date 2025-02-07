@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import { CompilerOptions } from 'vue/compiler-sfc'
+import removeAttr from 'remove-attr'
 
 // ref: https://stackoverflow.com/a/79312963/9636125
 function removeElementAttrs(node: Parameters<CompilerOptions['nodeTransforms'][number]>[0]) {
@@ -31,14 +32,19 @@ function removeElementAttrs(node: Parameters<CompilerOptions['nodeTransforms'][n
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          nodeTransforms: process.env.NODE_ENV === 'production' ? [removeElementAttrs] : [],
-        },
-      },
-    }),
+    vue(),
+    // vue({
+    //   template: {
+    //     compilerOptions: {
+    //       nodeTransforms: process.env.NODE_ENV === 'production' ? [removeElementAttrs] : [],
+    //     },
+    //   },
+    // }),
     UnoCSS(),
+    removeAttr({
+      extensions: ['vue'],
+      attributes: ['data-testid'],
+    }),
   ],
   server: {
     https: {
