@@ -1,24 +1,34 @@
 <template>
   <div>
-    <!-- <button @click="onClick">click</button> -->
-    <div class="wd-flex wd-items-center wd-justify-center wd-flex-col wd-h-14 wd-py-1 !wd-text-gray60 !wd-bg-orange50">123</div>
-    <div class="sm:(wd-text-lg wd-p-5 wd-m-5)">test group</div>
-    <div class="sm:wd-text-lg sm:wd-p-5 sm:wd-m-5">test group2</div>
+    <button
+      :data-testid="testIds.scope.somePage"
+      class="123"
+      :class="{
+        '123': true,
+        '456': false,
+      }"
+      @click="
+        () => {
+          console.log('123')
+        }
+      "
+    >
+      click
+    </button>
+    <button
+      data-testid="test-id123"
+      class="123"
+      @click="
+        () => {
+          console.log('123')
+        }
+      "
+    >
+      click2
+    </button>
   </div>
 </template>
 
-<!-- <script lang="ts" setup>
-import { ref, reactive, computed, watch } from 'vue'
-
-import TestChild from './TestChild.vue'
-
-const flag = ref(false)
-
-function onClick() {
-  flag.value = !flag.value
-}
-</script> -->
-
-<script lang="ts" setup></script>
-
-<style scoped></style>
+<script lang="ts" setup>
+import testIds from '../../public/test-ids.json'
+</script>

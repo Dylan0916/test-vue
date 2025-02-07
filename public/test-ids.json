@@ -1,0 +1,8 @@
+{
+    "scope": {
+        "somePage": "scope__some-page"
+    },
+    "scope2": {
+        "somePage2": "scope2__some-page2"
+    }
+}
