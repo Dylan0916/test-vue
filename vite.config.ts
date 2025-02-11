@@ -21,7 +21,7 @@ function removeElementAttrs(node: Parameters<CompilerOptions['nodeTransforms'][n
     if (isAttr) {
       return !attrsToRemove.includes(prop.name)
     }
-    if (isDynamicAttr) {
+    if (isDynamicAttr && prop.rawName) {
       return !attrsToRemove.some(attr => prop.rawName.indexOf(attr) !== -1)
     }
 

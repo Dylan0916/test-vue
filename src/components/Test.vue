@@ -29,6 +29,16 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import testIds from '../../public/test-ids.json'
+
+export default defineComponent({
+  name: 'Test',
+  setup() {
+    return {
+      testIds,
+    }
+  },
+})
 </script>
