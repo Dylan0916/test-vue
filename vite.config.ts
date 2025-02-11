@@ -32,19 +32,19 @@ function removeElementAttrs(node: Parameters<CompilerOptions['nodeTransforms'][n
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
-    // vue({
-    //   template: {
-    //     compilerOptions: {
-    //       nodeTransforms: process.env.NODE_ENV === 'production' ? [removeElementAttrs] : [],
-    //     },
-    //   },
-    // }),
-    UnoCSS(),
-    removeAttr({
-      extensions: ['vue'],
-      attributes: ['data-testid'],
+    // vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          nodeTransforms: process.env.NODE_ENV === 'production' ? [removeElementAttrs] : [],
+        },
+      },
     }),
+    UnoCSS(),
+    // removeAttr({
+    //   extensions: ['vue'],
+    //   attributes: ['data-testid'],
+    // }),
   ],
   server: {
     https: {
