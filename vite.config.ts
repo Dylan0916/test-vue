@@ -6,9 +6,9 @@ import removeAttr from 'remove-attr'
 
 // ref: https://stackoverflow.com/a/79312963/9636125
 function removeElementAttrs(node: Parameters<CompilerOptions['nodeTransforms'][number]>[0]) {
-  const nodeIsElement = node.type === 1
+  const isElementNode = node.type === 1
 
-  if (!nodeIsElement) {
+  if (!isElementNode) {
     return
   }
 
