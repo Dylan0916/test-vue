@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p class="w-min-1">123</p>
     <button
       :data-testid="testIds.scope.somePage"
       class="123"

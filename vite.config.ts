@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
+import WindiCSS from 'vite-plugin-windicss'
 import { CompilerOptions } from 'vue/compiler-sfc'
 import removeAttr from 'remove-attr'
 
@@ -41,6 +42,7 @@ export default defineConfig({
       },
     }),
     UnoCSS(),
+    // WindiCSS(),
     // removeAttr({
     //   extensions: ['vue'],
     //   attributes: ['data-testid'],
