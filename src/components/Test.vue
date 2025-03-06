@@ -2,6 +2,16 @@
   <div>
     <p class="w-min-1">123</p>
     <button
+      @click="
+        () => {
+          ref1 = !ref1
+          ref2 = !ref2
+        }
+      "
+    >
+      Click
+    </button>
+    <!-- <button
       :data-testid="testIds.scope.somePage"
       class="123"
       :class="{
@@ -26,20 +36,20 @@
       "
     >
       click2
-    </button>
+    </button> -->
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import testIds from '../../public/test-ids.json'
+<script lang="ts" setup>
+import { ref, watch } from 'vue'
 
-export default defineComponent({
-  name: 'Test',
-  setup() {
-    return {
-      testIds,
-    }
-  },
-})
+const ref1 = ref(false)
+const ref2 = ref(false)
+
+watch(ref1, foo)
+watch(ref2, foo)
+
+function foo() {
+  console.log('== foo ==')
+}
 </script>
