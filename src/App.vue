@@ -9,8 +9,8 @@ import Vueuse from './components/Vueuse.vue'
 
 <template>
   <!-- <VCalendar /> -->
-  <!-- <Test /> -->
-  <Vueuse />
+  <Test />
+  <!-- <Vueuse /> -->
   <!-- <VeeValidate /> -->
   <!-- <Proxy /> -->
   <!-- <WebApi /> -->
