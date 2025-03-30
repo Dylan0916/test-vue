@@ -1,17 +1,6 @@
 <template>
   <div>
-    <AppInfiniteScroll
-      :is-loading="isLoading"
-      :items-count="data.length"
-      :total-count="30"
-      class="pt-1 h-300px overflow-y-scroll border"
-      @load-more="onLoadMore"
-    >
-      <h2>test test</h2>
-      <div v-for="item in data" :key="item" class="h-15 bg-gray-500/5 rounded p-3">
-        {{ item }}
-      </div>
-    </AppInfiniteScroll>
+    <button @click="execute">execute</button>
     <!-- <button
       :data-testid="testIds.scope.somePage"
       class="123"
@@ -42,22 +31,23 @@
 </template>
 
 <script lang="ts" setup>
+import axios from 'axios'
 import { ref, watch } from 'vue'
+import { useAsyncState } from '@vueuse/core'
 
-import AppInfiniteScroll from './AppInfiniteScroll.vue'
+import { ResultError } from '../utils/common'
 
-const data = ref([1, 2, 3, 4, 5, 6])
-const isLoading = ref(false)
+function fetcher() {
+  return axios
+    .get('https://run.mocky.io/v3/e7001328-41be-4a2f-88b7-2dcb75ca8638')
+    .then(res => res.data)
+    .catch(e => Promise.reject(new ResultError(e.code, e.message, e)))
+}
 
-function onLoadMore() {
-  console.log('== load more ==')
-  const length = data.value.length + 1
+const { state, execute } = useAsyncState(fetcher, null, { immediate: false, onError })
 
-  isLoading.value = true
-
-  setTimeout(() => {
-    isLoading.value = false
-    data.value.push(...Array.from({ length: 5 }, (_, i) => length + i))
-  }, 2000)
+function onError(e: unknown) {
+  console.log(e)
+  console.log(e instanceof ResultError)
 }
 </script>
