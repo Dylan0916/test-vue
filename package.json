@@ -31,6 +31,7 @@
     "vee-validate": "^4.15.0",
     "vue": "^3.5.13",
     "vue-screen-utils": "1.0.0-beta.13",
+    "vuetify": "^3.8.2",
     "yup": "^1.6.1"
   },
   "devDependencies": {
@@ -41,6 +42,7 @@
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.5",
     "prettier": "^3.5.3",
+    "sass-embedded": "^1.86.3",
     "typescript": "^5.8.2",
     "vite": "^6.2.3",
     "vite-plugin-windicss": "^1.9.4",

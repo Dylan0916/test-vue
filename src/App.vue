@@ -5,6 +5,7 @@ import VeeValidate from './components/VeeValidate.vue'
 import Proxy from './components/Proxy.vue'
 import WebApi from './components/WebApi.vue'
 import Vueuse from './components/Vueuse.vue'
+import Vuetify from './components/Vuetify.vue'
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import Vueuse from './components/Vueuse.vue'
   <!-- <VeeValidate /> -->
   <!-- <Proxy /> -->
   <!-- <WebApi /> -->
+  <!-- <Vuetify /> -->
 </template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
