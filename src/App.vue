@@ -6,16 +6,18 @@ import Proxy from './components/Proxy.vue'
 import WebApi from './components/WebApi.vue'
 import Vueuse from './components/Vueuse.vue'
 import Vuetify from './components/Vuetify.vue'
+import Copper from './components/Copper.vue'
 </script>
 
 <template>
   <!-- <VCalendar /> -->
-  <Test />
+  <!-- <Test /> -->
   <!-- <Vueuse /> -->
   <!-- <VeeValidate /> -->
   <!-- <Proxy /> -->
   <!-- <WebApi /> -->
   <!-- <Vuetify /> -->
+  <Copper />
 </template>
 
 <style scoped lang="scss"></style>

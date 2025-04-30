@@ -1,4 +1,4 @@
-import { defineConfig, presetUno, presetAttributify, presetWind, transformerVariantGroup, transformerDirectives } from 'unocss'
+import { defineConfig, presetWind3, presetAttributify, transformerVariantGroup, transformerDirectives } from 'unocss'
 
 export default defineConfig({
   content: {
@@ -7,7 +7,7 @@ export default defineConfig({
       // exclude: ['node_modules', '.git', '.next'],
     },
   },
-  presets: [presetUno(), presetAttributify(), presetWind()],
+  presets: [presetWind3(), presetAttributify()],
   transformers: [
     transformerVariantGroup(), // 支持 variant groups（例如 hover:bg-red-500）
     transformerDirectives(), // 支持 @apply 等指令
