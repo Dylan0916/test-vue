@@ -11,7 +11,7 @@
     "lint": "eslint src --cache --cache-strategy content --cache-location ./.cache/eslint/.eslintcache",
     "test": "vitest -c ./src/test/vitest.config.ts",
     "test:coverage": "pnpm test --coverage",
-    "test:coverage:ci": "pnpm test:coverage --changed=origin/main...HEAD"
+    "test:coverage:ci": "pnpm test:coverage --changed origin/main"
   },
   "dependencies": {
     "@eslint/js": "^9.28.0",
