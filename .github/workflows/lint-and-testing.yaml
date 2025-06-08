@@ -1,0 +1,84 @@
+name: Lint and Testing
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: ['**']
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: read
+
+env:
+  FUNNOW_WEB_CLI_COMMIT: "b0fff37"
+
+jobs:
+  install-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install and cache dependencies
+        uses: ./.github/actions/install-and-cache-dependencies
+        with:
+          node_auth_token: ${{ secrets.GITHUB_TOKEN }}
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install and cache dependencies
+        uses: ./.github/actions/install-and-cache-dependencies
+        with:
+          node_auth_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache lint
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ github.workspace }}/.cache/eslint/
+          key: ${{ runner.os }}-lint-${{ hashFiles('**/pnpm-lock.yaml', '**/.eslint.config.mjs') }}
+          restore-keys: |
+            ${{ runner.os }}-lint-
+
+      - name: Run lint
+        run: pnpm lint
+
+  type-check:
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install and cache dependencies
+        uses: ./.github/actions/install-and-cache-dependencies
+        with:
+          node_auth_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download languages
+        run: funnow lang
+
+      # - name: Type check
+      #   run: pnpm typecheck
+
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install and cache dependencies
+        uses: ./.github/actions/install-and-cache-dependencies
+        with:
+          node_auth_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Tests
+        run: pnpm test
