@@ -71,6 +71,8 @@ jobs:
     needs: install-dependencies
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install and cache dependencies
         uses: ./.github/actions/install-and-cache-dependencies
