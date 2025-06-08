@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "typecheck": "vue-tsc",
     "lint": "eslint src --cache --cache-strategy content --cache-location ./.cache/eslint/.eslintcache",
-    "test": "vitest -c ./src/test/vitest.config.ts"
+    "test": "vitest -c ./src/test/vitest.config.ts",
+    "test:coverage": "pnpm test --coverage",
+    "test:coverage:ci": "pnpm test:coverage --changed=origin/main...HEAD"
   },
   "dependencies": {
     "@eslint/js": "^9.28.0",
@@ -41,6 +43,7 @@
     "@types/node": "^22.15.30",
     "@types/wicg-file-system-access": "^2023.10.6",
     "@vitejs/plugin-vue": "^5.2.4",
+    "@vitest/coverage-v8": "3.2.2",
     "eslint": "^9.28.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.1",
