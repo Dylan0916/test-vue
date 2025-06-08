@@ -14,3 +14,7 @@ export class ResultError extends Error {
     this.error = error
   }
 }
+
+export function sum(a: number, b: number) {
+  return a + b
+}
