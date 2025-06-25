@@ -6,7 +6,7 @@ import { execSync } from 'child_process'
 function getExecutedTestFiles() {
   try {
     // 使用 list --filesOnly 來獲取變更的測試檔案
-    const output = execSync('pnpm test list --changed origin/main --filesOnly', { encoding: 'utf8' })
+    const output = execSync('pnpm test:list --changed origin/main', { encoding: 'utf8' })
 
     // 解析輸出，提取測試檔案路徑
     const lines = output
@@ -38,12 +38,23 @@ console.log('📋 已執行的測試檔案:', executedFiles)
 console.log('🚀 執行 test (排除已執行的檔案)...')
 
 try {
-  const excludeArgs = executedFiles.map(file => `--exclude="${file}"`).join(' ')
-  const testCommand = `pnpm test ${excludeArgs}`
+  // 先檢查排除後是否還有剩餘的測試檔案
+  const allTestFiles = execSync('pnpm test:list', { encoding: 'utf8' })
+    .split('\n')
+    .map(line => line.trim())
+    .filter(line => line.endsWith('.spec.ts'))
 
-  console.log('執行命令:', testCommand)
+  const remainingFiles = allTestFiles.filter(file => !executedFiles.includes(file))
 
-  execSync(testCommand, { stdio: 'inherit' })
+  if (remainingFiles.length === 0) {
+    console.log('✅ 所有測試檔案都已在 coverage 中執行過，跳過重複執行')
+  } else {
+    const excludeArgs = executedFiles.map(file => `--exclude="${file}"`).join(' ')
+    const testCommand = `pnpm test ${excludeArgs}`
+
+    console.log('執行命令:', testCommand)
+    execSync(testCommand, { stdio: 'inherit' })
+  }
 
   console.log('✅ test 執行完成')
 } catch (error) {
