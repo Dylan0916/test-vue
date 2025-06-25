@@ -2,13 +2,9 @@
 
 import { execSync } from 'child_process'
 
-// 獲取已執行的測試檔案列表
 function getExecutedTestFiles() {
   try {
-    // 使用 list --filesOnly 來獲取變更的測試檔案
     const output = execSync('pnpm test:list --changed origin/main', { encoding: 'utf8' })
-
-    // 解析輸出，提取測試檔案路徑
     const lines = output
       .split('\n')
       .map(line => line.trim())
@@ -31,7 +27,6 @@ try {
   process.exit(1)
 }
 
-// 獲取已執行的測試檔案
 const executedFiles = getExecutedTestFiles()
 
 console.log('📋 已執行的測試檔案:', executedFiles)
