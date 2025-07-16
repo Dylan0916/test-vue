@@ -1,8 +1,9 @@
 name: Auto Close Milestone on Release
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v**'
 
 jobs:
   close-milestone:
