@@ -9,13 +9,21 @@ on:
 jobs:
   close-milestone:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Close milestone
         run: |
-            echo ref_name:
-            echo ${{ github.ref_name }}
+            echo "Current ref: ${{ github.ref }}"
+            echo "Ref name: ${{ github.ref_name }}"
+            echo "Event name: ${{ github.event_name }}"
+
+            # 為了測試，使用固定版本號
             MILESTONE_TITLE="test v0.1.0"
+            echo "Looking for milestone: $MILESTONE_TITLE"
+
             MILESTONE_NUMBER=$(gh api milestones --jq ".[] | select(.title == \"$MILESTONE_TITLE\") | .number")
+            echo "Found milestone number: $MILESTONE_NUMBER"
 
             if [ "$MILESTONE_NUMBER" != "null" ] && [ "$MILESTONE_NUMBER" != "" ]; then
                 echo "Closing milestone: $MILESTONE_TITLE (ID: $MILESTONE_NUMBER)"
