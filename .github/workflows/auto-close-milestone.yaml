@@ -9,6 +9,9 @@ on:
 jobs:
   close-milestone:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
