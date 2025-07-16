@@ -15,6 +15,7 @@ import { ref, onMounted } from 'vue'
 
 const items = ref<string[]>([''])
 const ulRef = ref<HTMLElement | null>(null)
+
 const isComposing = ref(false)
 
 function onUlInput() {
