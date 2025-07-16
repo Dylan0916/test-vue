@@ -1,0 +1,38 @@
+name: Auto Close Milestone on Release
+
+on:
+  push:
+    tags:
+      - 'v**'
+
+jobs:
+  close-milestone:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    env:
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Close milestone
+        run: |
+            echo "Current ref: ${{ github.ref }}"
+            echo "Ref name: ${{ github.ref_name }}"
+            echo "Event name: ${{ github.event_name }}"
+
+            # 從 release tag 取得版本號
+            VERSION="${{ github.ref_name }}"
+            MILESTONE_TITLE="test $VERSION"
+            echo "Looking for milestone: $MILESTONE_TITLE"
+
+            MILESTONE_NUMBER=$(gh api repos/${{ github.repository }}/milestones --jq ".[] | select(.title == \"$MILESTONE_TITLE\") | .number")
+            echo "Found milestone number: $MILESTONE_NUMBER"
+
+            if [ "$MILESTONE_NUMBER" != "null" ] && [ "$MILESTONE_NUMBER" != "" ]; then
+                echo "Closing milestone: $MILESTONE_TITLE (ID: $MILESTONE_NUMBER)"
+                gh api repos/${{ github.repository }}/milestones/$MILESTONE_NUMBER -f state=closed
+            else
+                echo "No milestone found with title: $MILESTONE_TITLE"
+            fi
