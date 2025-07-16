@@ -22,12 +22,12 @@ jobs:
             MILESTONE_TITLE="test v0.1.0"
             echo "Looking for milestone: $MILESTONE_TITLE"
 
-            MILESTONE_NUMBER=$(gh api milestones --jq ".[] | select(.title == \"$MILESTONE_TITLE\") | .number")
+            MILESTONE_NUMBER=$(gh api repos/${{ github.repository }}/milestones --jq ".[] | select(.title == \"$MILESTONE_TITLE\") | .number")
             echo "Found milestone number: $MILESTONE_NUMBER"
 
             if [ "$MILESTONE_NUMBER" != "null" ] && [ "$MILESTONE_NUMBER" != "" ]; then
                 echo "Closing milestone: $MILESTONE_TITLE (ID: $MILESTONE_NUMBER)"
-                gh api milestones/$MILESTONE_NUMBER -f state=closed
+                gh api repos/${{ github.repository }}/milestones/$MILESTONE_NUMBER -f state=closed
             else
                 echo "No milestone found with title: $MILESTONE_TITLE"
             fi
