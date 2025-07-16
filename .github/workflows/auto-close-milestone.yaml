@@ -18,11 +18,7 @@ jobs:
     steps:
       - name: Close milestone
         run: |
-            echo "Current ref: ${{ github.ref }}"
-            echo "Ref name: ${{ github.ref_name }}"
-            echo "Event name: ${{ github.event_name }}"
-
-            # 從 release tag 取得版本號
+            # Get version from release tag
             VERSION="${{ github.ref_name }}"
             MILESTONE_TITLE="test $VERSION"
             echo "Looking for milestone: $MILESTONE_TITLE"
