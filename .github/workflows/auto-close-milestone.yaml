@@ -1,10 +1,8 @@
 name: Auto Close Milestone on Release
 
 on:
-  pull_request:
-    branches: ['**']
-  # release:
-  #   types: [published]
+  release:
+    types: [published]
 
 jobs:
   close-milestone:
@@ -12,6 +10,10 @@ jobs:
     permissions:
       issues: write
       contents: read
+
+    env:
+      GH_TOKEN: ${{ github.token }}
+
     steps:
       - name: Close milestone
         run: |
@@ -19,8 +21,9 @@ jobs:
             echo "Ref name: ${{ github.ref_name }}"
             echo "Event name: ${{ github.event_name }}"
 
-            # 為了測試，使用固定版本號
-            MILESTONE_TITLE="test v0.2.0"
+            # 從 release tag 取得版本號
+            VERSION="${{ github.ref_name }}"
+            MILESTONE_TITLE="test $VERSION"
             echo "Looking for milestone: $MILESTONE_TITLE"
 
             MILESTONE_NUMBER=$(gh api repos/${{ github.repository }}/milestones --jq ".[] | select(.title == \"$MILESTONE_TITLE\") | .number")
