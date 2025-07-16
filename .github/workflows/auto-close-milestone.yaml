@@ -12,8 +12,6 @@ jobs:
     permissions:
       issues: write
       contents: read
-    env:
-      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Close milestone
         run: |
@@ -22,7 +20,7 @@ jobs:
             echo "Event name: ${{ github.event_name }}"
 
             # 為了測試，使用固定版本號
-            MILESTONE_TITLE="test v0.1.0"
+            MILESTONE_TITLE="test v0.2.0"
             echo "Looking for milestone: $MILESTONE_TITLE"
 
             MILESTONE_NUMBER=$(gh api repos/${{ github.repository }}/milestones --jq ".[] | select(.title == \"$MILESTONE_TITLE\") | .number")
