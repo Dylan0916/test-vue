@@ -12,14 +12,14 @@ import BulletedEditor from './components/BulletedEditor.vue'
 
 <template>
   <!-- <VCalendar /> -->
-  <!-- <Test /> -->
+  <Test />
   <!-- <Vueuse /> -->
   <!-- <VeeValidate /> -->
   <!-- <Proxy /> -->
   <!-- <WebApi /> -->
   <!-- <Vuetify /> -->
   <!-- <Copper /> -->
-  <BulletedEditor />
+  <!-- <BulletedEditor /> -->
 </template>
 
 <style scoped lang="scss"></style>

@@ -4,6 +4,7 @@ import UnoCSS from 'unocss/vite'
 import WindiCSS from 'vite-plugin-windicss'
 import { CompilerOptions } from 'vue/compiler-sfc'
 import removeAttr from 'remove-attr'
+import { resolve } from 'path'
 
 // ref: https://stackoverflow.com/a/79312963/9636125
 function removeElementAttrs(node: Parameters<CompilerOptions['nodeTransforms'][number]>[0]) {
@@ -41,7 +42,9 @@ export default defineConfig({
         },
       },
     }),
-    UnoCSS(),
+    UnoCSS({
+      configFile: resolve(__dirname, 'src/uno.config.ts'),
+    }),
     // WindiCSS(),
     // removeAttr({
     //   extensions: ['vue'],
