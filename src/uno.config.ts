@@ -23,17 +23,7 @@ export default defineConfig({
       }),
     ],
   ],
-  safelist: [
-    'wd-bg-orange50',
-    'wd-bg-teal40',
-    'wd-bg-teal70',
-    'wd-bg-gray60',
-    'wd-bg-gray80',
-    'wd-line-clamp-2',
-    'wd-line-clamp-3',
-    'wd-line-clamp-4',
-    'wd-line-clamp-10',
-  ],
+  safelist: [],
   theme: {
     breakpoints: {
       xs: '480px',
