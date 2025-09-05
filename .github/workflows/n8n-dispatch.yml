@@ -1,8 +1,18 @@
 name: N8N Dispatch Workflow
 
 on:
-  repository_dispatch:
-    types: [n8n-trigger]
+  workflow_dispatch:
+    inputs:
+      test_message:
+        description: '測試訊息'
+        required: false
+        default: '來自 n8n 的測試'
+        type: string
+      trigger_type:
+        description: '觸發類型'
+        required: false
+        default: 'n8n-trigger'
+        type: string
 
 jobs:
   test-job:
@@ -12,8 +22,12 @@ jobs:
         run: |
           echo "🚀 N8N Dispatch Workflow 已成功觸發！"
           echo "📅 執行時間: $(date)"
-          echo "🔧 觸發類型: ${{ github.event.action }}"
-          echo "📝 事件資料: ${{ toJson(github.event.client_payload) }}"
+          echo "🔧 觸發方式: ${{ github.event_name }}"
+          echo "📝 測試訊息: ${{ github.event.inputs.test_message || '預設測試訊息' }}"
+          echo "🏷️ 觸發類型: ${{ github.event.inputs.trigger_type || github.event.action || 'n8n-trigger' }}"
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "📦 事件資料: ${{ toJson(github.event.client_payload) }}"
+          fi
           echo "✅ 測試完成！"
       - name: Additional test output
         run: |
