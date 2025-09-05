@@ -13,6 +13,10 @@ on:
         required: false
         default: 'n8n-trigger'
         type: string
+      resumeUrl:
+        description: 'Resume URL (由 n8n 自動提供)'
+        required: false
+        type: string
 
 jobs:
   test-job:
@@ -24,9 +28,9 @@ jobs:
           echo "📅 執行時間: $(date)"
           echo "🔧 觸發方式: ${{ github.event_name }}"
           echo "📝 測試訊息: ${{ github.event.inputs.test_message || '預設測試訊息' }}"
-          echo "🏷️ 觸發類型: ${{ github.event.inputs.trigger_type || github.event.action || 'n8n-trigger' }}"
-          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
-            echo "📦 事件資料: ${{ toJson(github.event.client_payload) }}"
+          echo "🏷️ 觸發類型: ${{ github.event.inputs.trigger_type || 'n8n-trigger' }}"
+          if [ "${{ github.event.inputs.resumeUrl }}" != "" ]; then
+            echo "🔗 Resume URL: ${{ github.event.inputs.resumeUrl }}"
           fi
           echo "✅ 測試完成！"
       - name: Additional test output
