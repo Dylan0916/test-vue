@@ -1,0 +1,23 @@
+name: N8N Dispatch Workflow
+
+on:
+  repository_dispatch:
+    types: [n8n-trigger]
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log test message
+        run: |
+          echo "🚀 N8N Dispatch Workflow 已成功觸發！"
+          echo "📅 執行時間: $(date)"
+          echo "🔧 觸發類型: ${{ github.event.action }}"
+          echo "📝 事件資料: ${{ toJson(github.event.client_payload) }}"
+          echo "✅ 測試完成！"
+      - name: Additional test output
+        run: |
+          echo "🎯 這是一個來自 n8n 的測試觸發"
+          echo "📊 工作流程狀態: 成功執行"
+          echo "🔗 觸發來源: GitHub Repository Dispatch"
+          echo "⏰ 執行環境: Ubuntu Latest"
