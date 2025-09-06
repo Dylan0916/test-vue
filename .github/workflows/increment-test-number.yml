@@ -53,28 +53,13 @@ jobs:
             Automated number update.
           branch: 'chore/update-number-${{ github.run_id }}'
 
-      - name: Auto Merge PR
-        uses: actions/github-script@v7
+      - name: auto approve PR
+        uses: hmarr/auto-approve-action@v4
         with:
-          github-token: ${{ github.token }}
-          script: |
-            const { owner, repo } = context.repo;
-            const pullNumber = context.payload.pull_request?.number ?? Number('${{ steps.create_pull_request.outputs.pull-request-number }}');
+          pull-request-number: ${{ steps.create_pull_request.outputs.pull-request-number }}
 
-            if (!pullNumber) {
-              console.log('❌ No PR number found in context');
-              console.log('Context payload:', JSON.stringify(context.payload, null, 2));
-              core.setFailed('No PR number found in context');
-              return;
-            }
-
-            console.log(`Attempting to auto-merge PR #${pullNumber} for ${owner}/${repo}`);
-
-            await github.rest.pulls.merge({
-              owner,
-              repo,
-              pull_number: pullNumber,
-              merge_method: 'squash'
-            });
-
-            console.log(`✅ PR #${pullNumber} merged successfully`);
+      - name: Auto Merge PR
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          pull-request-number: ${{ steps.create_pull_request.outputs.pull-request-number }}
+          merge-method: squash
