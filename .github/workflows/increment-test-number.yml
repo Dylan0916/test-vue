@@ -53,8 +53,24 @@ jobs:
             Automated number update.
           branch: 'chore/update-number-${{ github.run_id }}'
 
+      - name: Get PR Number
+        id: get_pr_number
+        run: |
+          # 方法 1: 從 GitHub context 獲取（如果是 PR 觸發）
+          if [ -n "${{ github.event.pull_request.number }}" ]; then
+            echo "pr_number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+            echo "Using PR number from context: ${{ github.event.pull_request.number }}"
+          # 方法 2: 從 create-pull-request action 獲取
+          elif [ -n "${{ steps.create_pull_request.outputs.pull-request-number }}" ]; then
+            echo "pr_number=${{ steps.create_pull_request.outputs.pull-request-number }}" >> $GITHUB_OUTPUT
+            echo "Using PR number from create-pull-request: ${{ steps.create_pull_request.outputs.pull-request-number }}"
+          else
+            echo "❌ No PR number found"
+            exit 1
+          fi
+
       - name: Auto Merge PR
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
-          pull-request-number: ${{ steps.create_pull_request.outputs.pull-request-number }}
+          pull-request-number: ${{ steps.get_pr_number.outputs.pr_number }}
           merge-method: squash
