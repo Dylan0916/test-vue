@@ -9,9 +9,9 @@ on:
         default: 'Auto-increment test number'
 
 permissions:
+  id-token: write
   contents: write
   pull-requests: write
-  issues: write
 
 jobs:
   increment-and-pr:
@@ -21,7 +21,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Read current number
@@ -49,8 +48,8 @@ jobs:
         id: create_pull_request
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: 'chore: update number - $(date)'
+          commit-message: 'chore: update number'
           title: 'chore: update number'
           body: |
             Automated number update.
-          branch: 'chore/update-number-$(date)'
+          branch: 'chore/update-number-${{ github.run_id }}'
