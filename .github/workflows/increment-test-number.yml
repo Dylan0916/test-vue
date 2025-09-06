@@ -8,18 +8,18 @@ on:
         required: false
         default: 'Auto-increment test number'
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   increment-and-pr:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write
-      pull-requests: write
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-          
+
       - name: Read current number
         id: read_number
         run: |
@@ -29,34 +29,33 @@ jobs:
           else
             echo "current_number=0" >> $GITHUB_OUTPUT
           fi
-          
+
       - name: Increment number
         id: increment
         run: |
           NEW_NUMBER=$(( ${{ steps.read_number.outputs.current_number }} + 1 ))
           echo "new_number=$NEW_NUMBER" >> $GITHUB_OUTPUT
           echo "Incrementing from ${{ steps.read_number.outputs.current_number }} to $NEW_NUMBER"
-          
+
       - name: Update test.txt
         run: |
           echo "${{ steps.increment.outputs.new_number }}" > test.txt
-          
+
       - name: Create Pull Request
         id: create_pr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: increment test number to ${{ steps.increment.outputs.new_number }}"
           title: "Increment test number to ${{ steps.increment.outputs.new_number }}"
           body: |
             This PR automatically increments the number in test.txt from ${{ steps.read_number.outputs.current_number }} to ${{ steps.increment.outputs.new_number }}.
-            
+
             **Comment:** ${{ inputs.comment }}
-            
+
             This is an automated PR created by GitHub Actions.
           branch: "increment-test-number-${{ steps.increment.outputs.new_number }}"
           delete-branch: true
-          
+
       - name: Auto-merge PR
         if: steps.create_pr.outputs.pull-request-number
         run: |
