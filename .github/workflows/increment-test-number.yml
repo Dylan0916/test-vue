@@ -53,7 +53,18 @@ jobs:
       - name: Create branch and commit
         run: |
           BRANCH_NAME="increment-test-number-${{ steps.increment.outputs.new_number }}"
-          git checkout -b "$BRANCH_NAME"
+          
+          # Check if branch exists remotely
+          if git ls-remote --heads origin "$BRANCH_NAME" | grep -q "$BRANCH_NAME"; then
+            echo "Branch $BRANCH_NAME already exists, checking it out"
+            git fetch origin "$BRANCH_NAME"
+            git checkout "$BRANCH_NAME"
+            git pull origin "$BRANCH_NAME"
+          else
+            echo "Creating new branch $BRANCH_NAME"
+            git checkout -b "$BRANCH_NAME"
+          fi
+          
           git add test.txt
           git commit -m "chore: increment test number to ${{ steps.increment.outputs.new_number }}"
           git push origin "$BRANCH_NAME"
@@ -62,14 +73,24 @@ jobs:
       - name: Create Pull Request
         id: create_pr
         run: |
-          gh pr create \
-            --title "Increment test number to ${{ steps.increment.outputs.new_number }}" \
-            --body "This PR automatically increments the number in test.txt from ${{ steps.read_number.outputs.current_number }} to ${{ steps.increment.outputs.new_number }}.
+          # Check if PR already exists for this branch
+          EXISTING_PR=$(gh pr list --head "${{ env.branch_name }}" --json number --jq '.[0].number' || echo "")
+          
+          if [ -n "$EXISTING_PR" ] && [ "$EXISTING_PR" != "null" ]; then
+            echo "PR already exists: #$EXISTING_PR"
+            echo "pr_number=$EXISTING_PR" >> $GITHUB_OUTPUT
+          else
+            echo "Creating new PR"
+            PR_NUMBER=$(gh pr create \
+              --title "Increment test number to ${{ steps.increment.outputs.new_number }}" \
+              --body "This PR automatically increments the number in test.txt from ${{ steps.read_number.outputs.current_number }} to ${{ steps.increment.outputs.new_number }}.
 
-          **Comment:** ${{ inputs.comment }}
+            **Comment:** ${{ inputs.comment }}
 
-          This is an automated PR created by GitHub Actions." \
-            --head "${{ env.branch_name }}" \
-            --base main
+            This is an automated PR created by GitHub Actions." \
+              --head "${{ env.branch_name }}" \
+              --base main)
+            echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
