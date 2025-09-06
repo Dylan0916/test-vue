@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Read current number
         id: read_number
@@ -42,17 +45,31 @@ jobs:
         run: |
           echo "${{ steps.increment.outputs.new_number }}" > test.txt
 
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Create branch and commit
+        run: |
+          BRANCH_NAME="increment-test-number-${{ steps.increment.outputs.new_number }}"
+          git checkout -b "$BRANCH_NAME"
+          git add test.txt
+          git commit -m "chore: increment test number to ${{ steps.increment.outputs.new_number }}"
+          git push origin "$BRANCH_NAME"
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_ENV
+
       - name: Create Pull Request
         id: create_pr
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "chore: increment test number to ${{ steps.increment.outputs.new_number }}"
-          title: "Increment test number to ${{ steps.increment.outputs.new_number }}"
-          body: |
-            This PR automatically increments the number in test.txt from ${{ steps.read_number.outputs.current_number }} to ${{ steps.increment.outputs.new_number }}.
+        run: |
+          gh pr create \
+            --title "Increment test number to ${{ steps.increment.outputs.new_number }}" \
+            --body "This PR automatically increments the number in test.txt from ${{ steps.read_number.outputs.current_number }} to ${{ steps.increment.outputs.new_number }}.
 
-            **Comment:** ${{ inputs.comment }}
+          **Comment:** ${{ inputs.comment }}
 
-            This is an automated PR created by GitHub Actions.
-          branch: "increment-test-number-${{ steps.increment.outputs.new_number }}"
-          delete-branch: true
+          This is an automated PR created by GitHub Actions." \
+            --head "${{ env.branch_name }}" \
+            --base main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
