@@ -9,7 +9,6 @@ on:
         default: 'Auto-increment test number'
 
 permissions:
-  id-token: write
   contents: write
   pull-requests: write
 
@@ -53,3 +52,8 @@ jobs:
           body: |
             Automated number update.
           branch: 'chore/update-number-${{ github.run_id }}'
+
+      - name: Auto Merge i18n PR
+        uses: ./.github/actions/auto-merge-i18n-pr
+        with:
+          pr-number: ${{ steps.create_pull_request.outputs.pull-request-number }}
