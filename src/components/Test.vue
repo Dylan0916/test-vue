@@ -34,6 +34,9 @@
 import axios from 'axios'
 import { ref, watch } from 'vue'
 import { useAsyncState } from '@vueuse/core'
+import get from 'lodash-es/get'
 
 import { testClass } from '../constants'
+
+console.log(get({ a: 1 }, 'a'))
 </script>
