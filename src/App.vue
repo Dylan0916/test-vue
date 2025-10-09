@@ -8,11 +8,12 @@ import Vueuse from './components/Vueuse.vue'
 import Vuetify from './components/Vuetify.vue'
 import Copper from './components/Copper.vue'
 import BulletedEditor from './components/BulletedEditor.vue'
+import LargeList from './components/large-list/LargeList.vue'
 </script>
 
 <template>
   <!-- <VCalendar /> -->
-  <Test />
+  <!-- <Test /> -->
   <!-- <Vueuse /> -->
   <!-- <VeeValidate /> -->
   <!-- <Proxy /> -->
@@ -20,6 +21,7 @@ import BulletedEditor from './components/BulletedEditor.vue'
   <!-- <Vuetify /> -->
   <!-- <Copper /> -->
   <!-- <BulletedEditor /> -->
+  <LargeList />
 </template>
 
 <style scoped lang="scss"></style>

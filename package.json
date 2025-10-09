@@ -37,6 +37,7 @@
     "vee-validate": "^4.15.1",
     "vue": "^3.5.22",
     "vue-screen-utils": "1.0.0-beta.13",
+    "vue3-virtual-scroll-list": "^0.2.1",
     "vuetify": "^3.10.5",
     "yup": "^1.7.1"
   },
