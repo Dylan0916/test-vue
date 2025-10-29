@@ -5,6 +5,7 @@ import WindiCSS from 'vite-plugin-windicss'
 import { CompilerOptions } from 'vue/compiler-sfc'
 import removeAttr from 'remove-attr'
 import { resolve } from 'path'
+import svgLoader from 'vite-svg-loader'
 
 // ref: https://stackoverflow.com/a/79312963/9636125
 function removeElementAttrs(node: Parameters<CompilerOptions['nodeTransforms'][number]>[0]) {
@@ -50,7 +51,17 @@ export default defineConfig({
     //   extensions: ['vue'],
     //   attributes: ['data-testid'],
     // }),
+    svgLoader({
+      svgoConfig: {
+        plugins: ['prefixIds'],
+      },
+    }),
   ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
+  },
   server: {
     https: {
       key: './https/localhost-key.pem',

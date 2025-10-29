@@ -9,6 +9,7 @@ import Vuetify from './components/Vuetify.vue'
 import Copper from './components/Copper.vue'
 import BulletedEditor from './components/BulletedEditor.vue'
 import LargeList from './components/large-list/LargeList.vue'
+import IconList from './components/IconList.vue'
 </script>
 
 <template>
@@ -21,7 +22,8 @@ import LargeList from './components/large-list/LargeList.vue'
   <!-- <Vuetify /> -->
   <!-- <Copper /> -->
   <!-- <BulletedEditor /> -->
-  <LargeList />
+  <!-- <LargeList /> -->
+  <IconList />
 </template>
 
 <style scoped lang="scss"></style>
