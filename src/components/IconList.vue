@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap gap-2">
-    <FunNowSvgIcon v-for="icon in ICONS" :key="icon" size="24" class="text-blue-500" :name="icon" />
+    <FunNowSvgIcon v-for="icon in ICONS" :key="icon" size="24" class="text-red-100" :name="icon" />
   </div>
 </template>
 

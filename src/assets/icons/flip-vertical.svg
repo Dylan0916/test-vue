@@ -1,9 +1,9 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Icon/system icon">
 <g id="triangles">
-<path id="Triangle" fill-rule="evenodd" clip-rule="evenodd" d="M8.10246 5.66896C7.52329 5.02544 7.97998 4 8.84575 4H15.155C16.0208 4 16.4775 5.02544 15.8983 5.66896L12.7437 9.17412C12.3464 9.6155 11.6543 9.6155 11.2571 9.17412L8.10246 5.66896Z" stroke="#252729"/>
-<path id="Triangle_2" fill-rule="evenodd" clip-rule="evenodd" d="M8.10246 18.331C7.52329 18.9746 7.97998 20 8.84575 20H15.155C16.0208 20 16.4775 18.9746 15.8983 18.331L12.7437 14.8259C12.3464 14.3845 11.6543 14.3845 11.2571 14.8259L8.10246 18.331Z" stroke="#252729"/>
+<path id="Triangle" fill-rule="evenodd" clip-rule="evenodd" d="M8.10246 5.66896C7.52329 5.02544 7.97998 4 8.84575 4H15.155C16.0208 4 16.4775 5.02544 15.8983 5.66896L12.7437 9.17412C12.3464 9.6155 11.6543 9.6155 11.2571 9.17412L8.10246 5.66896Z" stroke="currentColor"/>
+<path id="Triangle_2" fill-rule="evenodd" clip-rule="evenodd" d="M8.10246 18.331C7.52329 18.9746 7.97998 20 8.84575 20H15.155C16.0208 20 16.4775 18.9746 15.8983 18.331L12.7437 14.8259C12.3464 14.3845 11.6543 14.3845 11.2571 14.8259L8.10246 18.331Z" stroke="currentColor"/>
 </g>
-<path id="Line 1331" d="M20 12L4 12" stroke="#252729" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Line 1331" d="M20 12L4 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </svg>
