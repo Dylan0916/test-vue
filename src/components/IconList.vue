@@ -1,91 +1,15 @@
 <template>
-  <div class="flex flex-wrap gap-2">
-    <FunNowSvgIcon v-for="icon in ICONS" :key="icon" size="24" class="text-red-400" :name="icon" />
+  <div class="flex flex-wrap gap-4 gap-y-5">
+    <div v-for="iconName in iconNames" :key="iconName" class="text-red-400 flex flex-col items-center w-17 overflow-hidden">
+      <FunNowSvgIcon class="size-8" :name="iconName" />
+      <p class="m-0 mt-2 truncate w-full text-center">{{ iconName }}</p>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import FunNowSvgIcon from './FunNowSvgIcon.vue'
 
-const ICONS = [
-  'add',
-  'age',
-  'alert',
-  'arrow-down',
-  'arrow-left',
-  'arrow-right',
-  'arrow-up',
-  'arrowline-down',
-  'calendar',
-  'cancel',
-  'chat',
-  'check',
-  'check-indeterminate',
-  'check-off',
-  'check-on',
-  'chevron-down',
-  'chevron-left',
-  'chevron-right',
-  'chevron-up',
-  'close',
-  'copy',
-  'coupon',
-  'creditcard',
-  'cuisine',
-  'delete',
-  'discount',
-  'download-app',
-  'eatigo',
-  'edit',
-  'email',
-  'eyes-close',
-  'eyes-open',
-  'fire',
-  'flip-horizontal',
-  'flip-vertical',
-  'footer-facebook',
-  'footer-instagram',
-  'footer-youtube',
-  'funbook',
-  'funnow',
-  'google-login',
-  'heart',
-  'heart-line',
-  'image',
-  'language',
-  'loading',
-  'location',
-  'location-hollow',
-  'mail',
-  'map',
-  'map-geo',
-  'member',
-  'menu',
-  'minus',
-  'mobile_phone',
-  'money',
-  'more',
-  'now',
-  'order',
-  'person',
-  'phone',
-  'plus',
-  'price',
-  'question',
-  'radio-checked',
-  'radio-unchecked',
-  'remove',
-  'rotate-clockwise',
-  'rotate-counter-clockwise',
-  'sale',
-  'search',
-  'settings',
-  'sorting',
-  'star',
-  'star-filled',
-  'tag',
-  'tick',
-  'time',
-  'trash',
-]
+const iconMap = import.meta.glob('@/assets/icons/*.svg', { eager: true })
+const iconNames = Object.keys(iconMap).map(key => key.replace('/src/assets/icons/', '').replace('.svg', ''))
 </script>
