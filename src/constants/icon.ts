@@ -121,4 +121,4 @@ export const ICON_NAMES = [
   'twitter',
   'venue',
   'youtube',
-] as const
+]

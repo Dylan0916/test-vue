@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { NConfigProvider, NMessageProvider, NGlobalStyle, type GlobalThemeOverrides } from 'naive-ui'
+import { NMessageProvider, NGlobalStyle, type GlobalThemeOverrides } from 'naive-ui'
 
 import VCalendar from './components/VCalendar.vue'
 import Test from './components/Test.vue'
@@ -29,15 +29,7 @@ import BulletedEditor from './components/BulletedEditor.vue'
 import LargeList from './components/large-list/LargeList.vue'
 import IconList from './components/IconList.vue'
 
-const themeOverrides: GlobalThemeOverrides = {
-  common: {
-    fontSize: '36',
-    fontSizeMedium: '18',
-    fontSizeSmall: '16',
-    fontSizeTiny: '12',
-    fontSizeLarge: '20',
-  },
-}
+const themeOverrides: GlobalThemeOverrides = {}
 </script>
 
 <style scoped lang="scss"></style>
