@@ -21,7 +21,15 @@ import { useClipboard, refDebounced } from '@vueuse/core'
 import { useMessage } from 'naive-ui'
 
 import { ICON_NAMES } from '@/constants/icon'
-import FunNowSvgIcon from './FunNowSvgIcon.vue'
+import FunNowSvgIcon from '@/components/FunNowSvgIcon.vue'
+
+/**
+ const iconNames = Object.keys(files)
+  .map(file => file.replace('../../node_modules/@myfunnow/web-core/dist/components/', ''))
+  .filter(file => !/^[A-Z]/.test(file))
+  .map(file => file.slice(0, -12))
+  .filter(Boolean) as IconName[]
+ */
 
 const { copy } = useClipboard()
 const message = useMessage()
