@@ -1,32 +1,6 @@
 <template>
   <div>
-    <div :class="testClass">execute</div>
-    <!-- <button
-      :data-testid="testIds.scope.somePage"
-      class="123"
-      :class="{
-        '123': true,
-        '456': false,
-      }"
-      @click="
-        () => {
-          console.log('123')
-        }
-      "
-    >
-      click
-    </button>
-    <button
-      data-testid="test-id123"
-      class="123"
-      @click="
-        () => {
-          console.log('123')
-        }
-      "
-    >
-      click2
-    </button> -->
+    <button @click="onClick">click</button>
   </div>
 </template>
 
@@ -34,9 +8,9 @@
 import axios from 'axios'
 import { ref, watch } from 'vue'
 import { useAsyncState } from '@vueuse/core'
-import get from 'lodash-es/get'
+import get from 'lodash/get'
 
-import { testClass } from '../constants'
-
-console.log(get({ a: 1 }, 'a'))
+function onClick() {
+  console.log(get({ a: 1 }, 'a'))
+}
 </script>

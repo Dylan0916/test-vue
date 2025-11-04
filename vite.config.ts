@@ -60,6 +60,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
+      lodash: 'lodash-es',
     },
   },
   server: {
