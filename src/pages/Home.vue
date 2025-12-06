@@ -4,11 +4,9 @@
   <!-- <Vueuse /> -->
   <!-- <VeeValidate /> -->
   <!-- <Proxy /> -->
-  <!-- <WebApi /> -->
   <!-- <Vuetify /> -->
   <!-- <Copper /> -->
   <!-- <BulletedEditor /> -->
-  <!-- <LargeList /> -->
 </template>
 
 <script setup lang="ts">
@@ -20,7 +18,6 @@ import Vueuse from '@/components/Vueuse.vue'
 import Vuetify from '@/components/Vuetify.vue'
 import Copper from '@/components/Copper.vue'
 import BulletedEditor from '@/components/BulletedEditor.vue'
-import LargeList from '@/components/large-list/LargeList.vue'
 </script>
 
 <style scoped lang="scss"></style>
