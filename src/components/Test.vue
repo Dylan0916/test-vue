@@ -8,7 +8,7 @@
 import axios from 'axios'
 import { ref, watch } from 'vue'
 import { useAsyncState } from '@vueuse/core'
-import get from 'lodash/get'
+import { get } from 'lodash-es'
 
 function onClick() {
   console.log(get({ a: 1 }, 'a'))
