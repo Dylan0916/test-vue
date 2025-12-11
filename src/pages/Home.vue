@@ -1,7 +1,7 @@
 <template>
   <!-- <VCalendar /> -->
-  <!-- <Test /> -->
-  <TestForm />
+  <Test />
+  <!-- <TestForm /> -->
   <!-- <Vueuse /> -->
   <!-- <VeeValidate /> -->
   <!-- <Proxy /> -->
