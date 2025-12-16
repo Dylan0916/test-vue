@@ -12,4 +12,8 @@ import { RouterView } from 'vue-router'
 const themeOverrides: GlobalThemeOverrides = {}
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+body {
+  @apply text-base text-black-50;
+}
+</style>

@@ -1,4 +1,6 @@
-import { defineConfig, presetWind3, presetAttributify, transformerVariantGroup, transformerDirectives } from 'unocss'
+import { defineConfig, presetWind3, transformerVariantGroup, transformerDirectives } from 'unocss'
+
+import { colors, typography } from './theme.config'
 
 export default defineConfig({
   content: {
@@ -7,7 +9,7 @@ export default defineConfig({
       // exclude: ['node_modules', '.git', '.next'],
     },
   },
-  presets: [presetWind3(), presetAttributify()],
+  presets: [presetWind3()],
   transformers: [
     transformerVariantGroup(), // 支持 variant groups（例如 hover:bg-red-500）
     transformerDirectives(), // 支持 @apply 等指令
@@ -32,11 +34,7 @@ export default defineConfig({
       lg: '1200px',
       desktop: '1024px',
     },
-    colors: Object.freeze({ orange50: '#ff5537', teal40: '#A7D1C3', teal70: '#4D947C', gray60: '#a7a7a9', gray80: '#747476' }),
-    fontSize: {
-      small: '13px',
-      normal: '15px',
-      title: '17px',
-    },
+    colors,
+    fontSize: typography,
   },
 })

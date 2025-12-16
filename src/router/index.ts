@@ -4,6 +4,7 @@ import { RouterName } from '@/router/constants'
 
 const routes = [
   { path: '/icons', name: RouterName.ICONS, component: () => import('@/pages/Icons.vue') },
+  { path: '/buttons', name: RouterName.BUTTONS, component: () => import('@/pages/Buttons.vue') },
   { path: '', name: RouterName.HOME, component: () => import('@/pages/Home.vue') },
 ]
 
