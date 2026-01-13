@@ -1,20 +1,15 @@
 <template>
   <div>
-    <button @click="onClick">onClick</button>
-    <AppDrawer v-model:show="show" class="my-drawer">
-      <div>content</div>
-    </AppDrawer>
+    <NDatePicker v-model:value="timestamp" type="date" />
+    <NDatePicker v-model:formatted-value="formattedValue" value-format="yyyy--MM--dd" format="yyyy/MM/dd" type="date" />
+    <p>{{ timestamp }} , {{ formattedValue }}</p>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { NDatePicker } from 'naive-ui'
 
-import AppDrawer from '@/components/AppDrawer.vue'
-
-const show = ref(false)
-
-function onClick() {
-  show.value = true
-}
+const timestamp = ref(1183135260000)
+const formattedValue = ref('2007--06--30')
 </script>
